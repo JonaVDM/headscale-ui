@@ -3,13 +3,17 @@ import { fail, message, superValidate } from 'sveltekit-superforms';
 import { z } from 'zod';
 import { zod } from 'sveltekit-superforms/adapters';
 import { newClient } from '$lib/client';
-import { redirect } from '@sveltejs/kit';
+import { redirect, type ServerLoad } from '@sveltejs/kit';
 
 const schema = z.object({
   key: z.string().nonempty('Key cannot be empty'),
 });
 
-export const load = async () => {
+export const load: ServerLoad = async ({ cookies }) => {
+  if (!!cookies.get('api-key')) {
+    throw redirect(303, "/")
+  }
+
   const form = await superValidate(zod(schema));
 
   return { form };
