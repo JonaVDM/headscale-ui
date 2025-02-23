@@ -1,6 +1,8 @@
 import { HeadscaleServiceApi } from "./client/apis";
 import { Configuration, type FetchAPI } from "./client/runtime";
 
+export * from './client/index';
+
 export const newClient = (fetch: FetchAPI, key: string) => {
   const client = new HeadscaleServiceApi(new Configuration({
     basePath: 'https://headscale.jonavdm.nl',
