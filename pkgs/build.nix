@@ -11,7 +11,7 @@
 }:
 with pkgs; let
   pname = "headscale-ui";
-  src = ./.;
+  src = ../.;
 
   node_modules = stdenv.mkDerivation {
     inherit src version;
