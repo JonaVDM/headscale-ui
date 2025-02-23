@@ -9,6 +9,11 @@
 			to: '/nodes',
 			icon: 'heroicons:computer-desktop-solid',
 			label: 'Nodes'
+		},
+		{
+			to: '/users',
+			icon: 'heroicons:user-group',
+			label: 'Users'
 		}
 	];
 </script>
