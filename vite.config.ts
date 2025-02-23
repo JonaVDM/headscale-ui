@@ -8,5 +8,6 @@ export default defineConfig({
     proxy: {
       '/api': 'https://headscale.jonavdm.nl',
     },
+    allowedHosts: true,
   },
 });
