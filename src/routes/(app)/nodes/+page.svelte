@@ -1,4 +1,5 @@
 <script lang="ts">
+	import TagList from '$lib/components/TagList.svelte';
 	import type { PageProps } from './$types';
 
 	const { data }: PageProps = $props();
@@ -34,13 +35,7 @@
 							</div>
 							<div class="flex items-center gap-2">
 								<p class="font-thin">{node.raw.user?.name ?? '-'}</p>
-								{#each node.raw.validTags ?? [] as tag}
-									<div class="badge badge-outline badge-success text-xs">{tag}</div>
-								{/each}
-
-								{#each node.raw.invalidTags ?? [] as tag}
-									<div class="badge badge-outline badge-error text-xs">{tag}</div>
-								{/each}
+								<TagList valid={node.raw.validTags} invalid={node.raw.invalidTags} />
 							</div>
 						</a>
 					</td>

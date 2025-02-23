@@ -8,7 +8,8 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
     const client = newClient(fetch, key ?? '');
 
     return {
-      node: await client.headscaleServiceGetNode({ nodeId: params.id })
+      node: await client.headscaleServiceGetNode({ nodeId: params.id }),
+      routes: await client.headscaleServiceGetNodeRoutes({ nodeId: params.id })
     }
   } catch (e) {
     return error(400, "something went wrong")
