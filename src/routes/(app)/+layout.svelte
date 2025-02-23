@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import { page } from '$app/state';
 	import logo from '$lib/assets/headscale3-dots.svg';
+	import Link from '$lib/components/Link.svelte';
 	let { children } = $props();
 
 	const links: { to: string; icon: string; label: string }[] = [
@@ -28,10 +28,10 @@
 	<ul class="menu menu-horizontal justify-center">
 		{#each links as link}
 			<li>
-				<a href={link.to} class:menu-active={page.route.id?.startsWith(link.to)}>
+				<Link href={link.to}>
 					<Icon icon={link.icon} class="size-7"></Icon>
 					{link.label}
-				</a>
+				</Link>
 			</li>
 		{/each}
 	</ul>
@@ -43,9 +43,9 @@
 
 <div class="dock bg-base-300 sm:hidden">
 	{#each links as link}
-		<a href={link.to} class:dock-active={page.route.id?.startsWith(link.to)}>
+		<Link href={link.to}>
 			<Icon icon={link.icon} class="size-[1.2em]"></Icon>
 			<span class="dock-label">{link.label}</span>
-		</a>
+		</Link>
 	{/each}
 </div>

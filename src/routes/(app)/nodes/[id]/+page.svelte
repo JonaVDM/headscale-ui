@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Link from '$lib/components/Link.svelte';
 	import TagList from '$lib/components/TagList.svelte';
 	import type { PageProps } from './$types';
 
@@ -27,7 +28,7 @@
 {:else}
 	<div class="flex flex-col gap-3">
 		<div>
-			<a href="/nodes" class="link link-primary">Back</a>
+			<Link href="/nodes" class="link link-primary">Back</Link>
 		</div>
 		<div>
 			<div class="flex items-center gap-2 text-3xl">

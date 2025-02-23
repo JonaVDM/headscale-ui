@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Link from '$lib/components/Link.svelte';
 	import TagList from '$lib/components/TagList.svelte';
 	import type { PageProps } from './$types';
 
@@ -27,7 +28,7 @@
 			{#each nodes as node}
 				<tr class="hover:bg-base-200">
 					<td>
-						<a href="/nodes/{node.raw.id}" class="block h-full w-full cursor-pointer">
+						<Link href="/nodes/{node.raw.id}" class="block h-full w-full cursor-pointer">
 							<div class="flex items-center gap-2">
 								<span class="h-2 w-2 rounded-full bg-gray-500" class:bg-green-600={node.raw.online}>
 								</span>
@@ -37,7 +38,7 @@
 								<p class="font-thin">{node.raw.user?.name ?? '-'}</p>
 								<TagList valid={node.raw.validTags} invalid={node.raw.invalidTags} />
 							</div>
-						</a>
+						</Link>
 					</td>
 					<td>{node.address}</td>
 					<td class="max-sm:hidden">{node.last}</td>

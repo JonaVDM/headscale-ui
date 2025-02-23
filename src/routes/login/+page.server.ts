@@ -5,6 +5,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { newClient } from '$lib/client';
 import { redirect, type ServerLoad } from '@sveltejs/kit';
 import { dev } from '$app/environment';
+import { base } from '$app/paths';
 
 const schema = z.object({
   key: z.string().nonempty('Key cannot be empty'),
@@ -12,7 +13,7 @@ const schema = z.object({
 
 export const load: ServerLoad = async ({ cookies }) => {
   if (!!cookies.get('api-key')) {
-    throw redirect(303, "/")
+    throw redirect(303, `${base}/nodes`)
   }
 
   const form = await superValidate(zod(schema));
@@ -38,6 +39,6 @@ export const actions: Actions = {
         status: 401,
       });
     }
-    throw redirect(303, '/');
+    throw redirect(303, `${base}/nodes`);
   }
 };
