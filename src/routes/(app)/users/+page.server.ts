@@ -11,6 +11,7 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
       users: await client.headscaleServiceListUsers()
     }
   } catch (e) {
+    console.log(e)
     return error(400, "something went wrong")
   }
 }
