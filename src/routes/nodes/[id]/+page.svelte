@@ -12,10 +12,10 @@
 {#if !node}
 	<p>Well this is akward</p>
 {:else}
-	<div class="flex flex-col gap-3 py-2">
+	<div class="flex flex-col gap-3">
 		<h1 class="text-3xl">{name}</h1>
 
-		<table class="table-xs table">
+		<table class="table-sm table">
 			<tbody>
 				<tr>
 					<th>ID</th>

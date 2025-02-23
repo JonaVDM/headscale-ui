@@ -13,7 +13,7 @@
 	);
 </script>
 
-<div class="mx-auto max-w-4xl overflow-x-scroll py-2">
+<div class="overflow-x-scroll">
 	<table class="table">
 		<thead>
 			<tr>

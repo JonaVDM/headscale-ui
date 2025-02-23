@@ -1,16 +1,6 @@
-import { newClient } from '$lib/client';
-import type { Actions } from './$types';
+import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
-export const actions: Actions = {
-  default: async ({ request, fetch }) => {
-    const data = await request.formData();
-    const key = data.get('key');
-
-    try {
-      const client = newClient(fetch, key?.toString() || '')
-      return await client.headscaleServiceListNodes()
-    } catch {
-      return [];
-    }
-  }
-};
+export const load: PageServerLoad = () => {
+  throw redirect(303, "/nodes");
+}
