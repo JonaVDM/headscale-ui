@@ -1,7 +1,9 @@
 <script lang="ts">
+	import JsWarning from '$lib/components/JSWarning.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import TagList from '$lib/components/TagList.svelte';
 	import UserCard from '$lib/components/UserCard.svelte';
+	import TagForm from '$lib/forms/TagForm.svelte';
 	import type { PageProps } from './$types';
 
 	const { data }: PageProps = $props();
@@ -130,5 +132,26 @@
 				</div>
 			</div>
 		{/if}
+
+		<div class="card bg-base-200">
+			<div class="card-body">
+				<h2 class="card-title">Housekeeping</h2>
+				<JsWarning></JsWarning>
+
+				<div class="flex gap-2">
+				    <TagForm data={data.form} />
+
+					<!-- Expire -->
+					<!-- Rename -->
+					<!-- Delete -->
+
+					<!--
+            The api also has a option to change the user, but that has been
+            nothing but a buggy expirence for me. I'm not even gonna put in
+            any effort into making that feature availible in this dashboard.
+          -->
+				</div>
+			</div>
+		</div>
 	</div>
 {/if}
