@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import JsWarning from '$lib/components/JSWarning.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import TagList from '$lib/components/TagList.svelte';
@@ -138,10 +139,9 @@
 				<h2 class="card-title">Housekeeping</h2>
 				<JsWarning></JsWarning>
 
-				<div class="flex gap-2">
-				    <TagForm data={data.form} />
+				<div>
+					<TagForm data={data.form} />
 
-					<!-- Expire -->
 					<!-- Rename -->
 					<!-- Delete -->
 
@@ -151,6 +151,24 @@
             any effort into making that feature availible in this dashboard.
           -->
 				</div>
+
+				<form action="?/expire" method="POST" use:enhance>
+					<p class="mt-10 font-bold">Expire session</p>
+					<button class="btn btn-warning">Expire</button>
+				</form>
+
+				<form action="?/delete" method="POST">
+					<p class="mt-10 font-bold">Delete node</p>
+					<p>
+						You might be shocked to learn that this action is not easily reverable. Please type
+						"delete" to confirm.
+					</p>
+					<div class="pb-2">
+						<input type="text" name="confirm" class="input" />
+					</div>
+
+					<button class="btn btn-error">Delete</button>
+				</form>
 			</div>
 		</div>
 	</div>

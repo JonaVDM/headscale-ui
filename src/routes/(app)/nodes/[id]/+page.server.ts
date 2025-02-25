@@ -1,9 +1,10 @@
 import { newClient, type HeadscaleServiceSetTagsBody, type HeadscaleServiceSetTagsRequest } from "$lib/client";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from './$types';
 import { fail, superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { tagSchema } from "$lib/forms/tagform-schema";
+import { base } from '$app/paths';
 
 export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
   try {
@@ -49,5 +50,34 @@ export const actions: Actions = {
     } catch (e) {
       console.log(e)
     }
-  }
+  },
+
+  expire: async ({ cookies, params }) => {
+    try {
+      const key = cookies.get('api-key');
+      const client = newClient(fetch, key ?? '');
+
+      await client.headscaleServiceExpireNode({ nodeId: params.id });
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  delete: async ({ request, cookies, params }) => {
+    try {
+      if ((await request.formData()).get('confirm') != 'delete') {
+        return '';
+      }
+
+      const key = cookies.get('api-key');
+      const client = newClient(fetch, key ?? '');
+
+      await client.headscaleServiceDeleteNode({ nodeId: params.id });
+    } catch (e) {
+      console.log(e)
+      return
+    }
+
+    throw redirect(303, `${base}/nodes`)
+  },
 };
