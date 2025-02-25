@@ -24,7 +24,7 @@
 	</a>
 </div>
 
-<nav class="bg-base-200 flex justify-center max-sm:hidden">
+<nav class="bg-base-200 flex justify-center">
 	<ul class="menu menu-horizontal justify-center">
 		{#each links as link}
 			<li>
@@ -39,13 +39,4 @@
 
 <div class="mx-auto max-w-[65rem] px-1 py-2">
 	{@render children()}
-</div>
-
-<div class="dock bg-base-300 sm:hidden">
-	{#each links as link}
-		<Link href={link.to}>
-			<Icon icon={link.icon} class="size-[1.2em]"></Icon>
-			<span class="dock-label">{link.label}</span>
-		</Link>
-	{/each}
 </div>
