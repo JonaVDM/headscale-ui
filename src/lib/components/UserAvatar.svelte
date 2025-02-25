@@ -8,6 +8,10 @@
 	} = $props();
 
 	const initials = $derived.by(() => {
+		if (name == '') {
+			return '';
+		}
+
 		const spl = name?.split(' ') ?? [];
 
 		if (spl.length == 1) {

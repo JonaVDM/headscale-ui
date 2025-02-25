@@ -10,6 +10,11 @@
 			name: value.name == value.givenName ? value.name : `${value.givenName} (${value.name})`,
 			address: value.ipAddresses?.join(', '),
 			last: value.online ? 'Currently online' : (value.lastSeen?.toLocaleString() ?? '-'),
+			username: value.user?.email || value.user?.displayName || value.user?.name || 'idk',
+			tagCount:
+				(value.validTags?.length ?? 0) +
+				(value.invalidTags?.length ?? 0) +
+				(value.forcedTags?.length ?? 0),
 			raw: value
 		}))
 	);
@@ -36,7 +41,11 @@
 							</div>
 							<div class="flex items-center gap-2">
 								<p class="font-thin">{node.raw.user?.name ?? '-'}</p>
-								<TagList valid={node.raw.validTags} invalid={node.raw.invalidTags} />
+								{#if node.tagCount > 0}
+									<TagList valid={node.raw.validTags} invalid={node.raw.invalidTags} />
+								{:else}
+									<p class="text-xs font-thin">{node.username}</p>
+								{/if}
 							</div>
 						</Link>
 					</td>

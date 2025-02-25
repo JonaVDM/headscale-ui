@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Link from '$lib/components/Link.svelte';
 	import TagList from '$lib/components/TagList.svelte';
+	import UserCard from '$lib/components/UserCard.svelte';
 	import type { PageProps } from './$types';
 
 	const { data }: PageProps = $props();
@@ -35,11 +36,10 @@
 				<span class="h-4 w-4 rounded-full bg-gray-500" class:bg-green-600={node.online}></span>
 				<h1>{name}</h1>
 			</div>
-			<div>
-				<p class="link"><span class="text-xs font-thin">@</span>{node.user?.name}</p>
-			</div>
 			<TagList forced={node.forcedTags} valid={node.validTags} invalid={node.invalidTags} />
 		</div>
+
+		<UserCard user={node!.user!}></UserCard>
 
 		<div class="card bg-base-200">
 			<div class="card-body">
