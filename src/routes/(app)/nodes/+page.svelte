@@ -40,7 +40,6 @@
 								<p>{node.name}</p>
 							</div>
 							<div class="flex items-center gap-2">
-								<p class="font-thin">{node.raw.user?.name ?? '-'}</p>
 								{#if node.tagCount > 0}
 									<TagList valid={node.raw.validTags} invalid={node.raw.invalidTags} />
 								{:else}
