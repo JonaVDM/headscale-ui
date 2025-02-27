@@ -1,0 +1,6 @@
+@host=https://headscale.jonavdm.nl
+@token=kbRTLtqvZg.yDre9bF8EDQQ0NhYa59SXITn01-TnhEvn2_8XUsTOWQ
+
+###
+GET {{host}}/api/v1/preauthkey?user=jona
+Authorization: Bearer {{token}}

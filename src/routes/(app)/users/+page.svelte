@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Link from '$lib/components/Link.svelte';
 	import UserAvatar from '$lib/components/UserAvatar.svelte';
 	import type { PageProps } from './$types';
 
@@ -26,13 +27,27 @@
 		<tbody>
 			{#each users as user}
 				<tr class="hover:bg-base-200">
-					<td class="flex items-center gap-2">
-						<UserAvatar name={user.name} avatar={user.raw.profilePicUrl} />
-						{user.name}
+					<td>
+						<Link href="/users/{user.raw.id}" class="flex items-center gap-2">
+							<UserAvatar name={user.name} avatar={user.raw.profilePicUrl} />
+							{user.name}
+						</Link>
 					</td>
-					<td>{user.email}</td>
-					<td>{user.raw.id}</td>
-					<td>{user.raw.createdAt?.toLocaleDateString()}</td>
+					<td>
+						<Link href="/users/{user.raw.id}">
+							{user.email}
+						</Link>
+					</td>
+					<td>
+						<Link href="/users/{user.raw.id}">
+							{user.raw.id}
+						</Link>
+					</td>
+					<td>
+						<Link href="/users/{user.raw.id}">
+							{user.raw.createdAt?.toLocaleDateString()}
+						</Link>
+					</td>
 				</tr>
 			{/each}
 		</tbody>

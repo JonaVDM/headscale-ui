@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import BackLink from '$lib/components/BackLink.svelte';
 	import JsWarning from '$lib/components/JSWarning.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import TagList from '$lib/components/TagList.svelte';
@@ -32,7 +33,7 @@
 {:else}
 	<div class="flex flex-col gap-3">
 		<div>
-			<Link href="/nodes" class="link link-primary">Back</Link>
+			<BackLink href="/nodes" class="link link-primary" />
 		</div>
 		<div>
 			<div class="flex items-center gap-2 text-3xl">
@@ -42,7 +43,9 @@
 			<TagList forced={node.forcedTags} valid={node.validTags} invalid={node.invalidTags} />
 		</div>
 
-		<UserCard user={node!.user!}></UserCard>
+		<Link href="/users/{node.user?.id}">
+			<UserCard user={node!.user!}></UserCard>
+		</Link>
 
 		<div class="card bg-base-200">
 			<div class="card-body">
