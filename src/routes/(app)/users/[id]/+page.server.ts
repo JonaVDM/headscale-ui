@@ -7,9 +7,12 @@ export const load: PageServerLoad = async (event) => {
 		const client = newClientEvent(event);
 		const userId = event.params.id;
 
+		const user = await getUser(client, userId);
+
 		return {
-			user: await getUser(client, userId),
+			user,
 			devices: await getDevices(client, userId),
+			keys: await client.headscaleServiceListPreAuthKeys({ user: user?.email || user?.name }),
 		};
 
 	} catch (e) {
