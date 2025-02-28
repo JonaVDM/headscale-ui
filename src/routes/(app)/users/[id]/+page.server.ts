@@ -1,6 +1,6 @@
-import { HeadscaleServiceApi, newClientEvent, type V1Node, type V1User } from '$lib/client';
+import { HeadscaleServiceApi, newClient, newClientEvent, type V1Node, type V1User } from '$lib/client';
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	try {
@@ -18,6 +18,23 @@ export const load: PageServerLoad = async (event) => {
 	} catch (e) {
 		console.log(e);
 		return error(400, 'something went wrong');
+	}
+};
+
+export const actions: Actions = {
+	expire: async ({ cookies, request }) => {
+		try {
+			const key = cookies.get('api-key');
+			const client = newClient(fetch, key ?? '');
+
+			const data = await request.formData();
+			const authKey = data.get('key')?.toString() ?? '';
+			const user = data.get('user')?.toString() ?? '';
+			client.headscaleServiceExpirePreAuthKey({ body: { user, key: authKey } });
+		} catch (e) {
+			console.log(e);
+			return error(400, "something went wrong");
+		}
 	}
 };
 
