@@ -15,7 +15,7 @@ in
         version
         src
         ;
-      hash = "sha256-lJt2Zx1Xj05O2+Jaxs4zU94110gudC9vxzBh1bth0rk=";
+      hash = "sha256-0ZDHGMiaVfzuD4/DMVA9zYr/qpKyLpsXZpNaJ5QLN9o=";
     };
 
     nativeBuildInputs = [
